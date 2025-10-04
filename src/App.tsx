@@ -1,6 +1,6 @@
-import Navbar from "./Navbar.tsx";
+import Navbar from "./components/Navbar.tsx";
 import {DockviewReact, type DockviewReadyEvent} from "dockview-react";
-import {evergreen} from "./theme.ts";
+import {evergreen} from "./utils/theme.ts";
 
 function HelloPanel() {
     return <div>Hello</div>
