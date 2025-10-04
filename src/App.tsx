@@ -1,22 +1,38 @@
-import { useState } from 'react'
+import Navbar from "./Navbar.tsx";
+import {DockviewReact, type DockviewReadyEvent} from "dockview-react";
+import {evergreen} from "./theme.ts";
+
+function HelloPanel() {
+    return <div>Hello</div>
+}
+
+const components = {
+    hello: HelloPanel
+}
 
 export default function App() {
-  const [count, setCount] = useState(0)
+    function onReady(event: DockviewReadyEvent) {
+        event.api.addPanel({
+            id: "first",
+            component: "hello"
+        });
 
-  return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+        event.api.addPanel({
+            id: "second",
+            component: "hello",
+            position: {
+                direction: "right",
+                referencePanel: "first"
+            }
+        });
+    }
+
+    return (
+        <div className="flex flex-col h-screen">
+            <Navbar/>
+            <div className="flex-1 min-h-0">
+                <DockviewReact theme={evergreen} components={components} onReady={onReady}/>
+            </div>
+        </div>
+    );
 }
