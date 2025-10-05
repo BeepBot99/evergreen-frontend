@@ -12,4 +12,5 @@ export default defineConfig({
         }),
         tailwindcss()
     ],
+    base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
 })
