@@ -40,7 +40,7 @@ jobs:
           node-version: lts/*
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm i --frozen-lockfile
+        run: pnpm i
       - name: Build
         run: pnpm run build
         env:
